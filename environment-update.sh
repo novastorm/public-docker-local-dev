@@ -11,7 +11,7 @@ echo "updating configurations with latest values from environment-config.yaml"
 mkdir -p "${DIR}/compose-service-configs/generated/"
 
 set -e -x
-docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/.env.jinja environment-config.yaml --format=yaml > "${DIR}/.env"
-docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/docker-compose.yaml.jinja environment-config.yaml --format=yaml > "${DIR}/docker-compose.yaml"
-docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/vida-proxy.conf.template.jinja environment-config.yaml --format=yaml > "${DIR}/compose-service-configs/generated/vida-proxy.conf.template"
-docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/ngrok.yml.jinja environment-config.yaml --format=yaml > "${DIR}/ngrok.yml"
+docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app novastorm/jinja2-cli jinja2 setup/jinja-templates/.env.jinja environment-config.yaml --format=yaml > "${DIR}/.env"
+docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app novastorm/jinja2-cli jinja2 setup/jinja-templates/docker-compose.yaml.jinja environment-config.yaml --format=yaml > "${DIR}/docker-compose.yaml"
+docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app novastorm/jinja2-cli jinja2 setup/jinja-templates/vida-proxy.conf.template.jinja environment-config.yaml --format=yaml > "${DIR}/compose-service-configs/generated/vida-proxy.conf.template"
+docker run --rm --mount type=bind,source=${DIR},target=/usr/src/app novastorm/jinja2-cli jinja2 setup/jinja-templates/ngrok.yml.jinja environment-config.yaml --format=yaml > "${DIR}/ngrok.yml"

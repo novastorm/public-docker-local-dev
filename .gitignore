@@ -7,3 +7,4 @@ environment-config.yaml
 docker-compose.yaml
 ngrok.yml
 /compose-service-configs/generated/
+.idea

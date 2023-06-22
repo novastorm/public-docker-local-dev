@@ -25,7 +25,7 @@ gcloud auth configure-docker us.gcr.io,gcr.io
 
 
 echo "Copying environment-config.yaml to environment-config.yaml"
-docker run --rm --mount type=bind,source=${ROOT_DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/environment-config.yaml.jinja -D SAFE_USERNAME="${USER//.}" --format=yaml > "${ROOT_DIR}/environment-config.yaml"
+docker run --platform linux/amd64 --rm --mount type=bind,source=${ROOT_DIR},target=/usr/src/app rmelickvida/jinja2-cli:1de0a4a jinja2 setup/jinja-templates/environment-config.yaml.jinja -D SAFE_USERNAME="${USER//.}" --format=yaml > "${ROOT_DIR}/environment-config.yaml"
 
 echo "Generating templates from environment"
 "${ROOT_DIR}/environment-update.sh"
@@ -34,16 +34,16 @@ echo "Starting up docker in 'detached' mode before initializing databases"
 cd "${ROOT_DIR}" || exit
 docker-compose up -d --remove-orphans
 
-echo "Triggering database reset"
-"${DIR}/reset-databases.sh"
-
-echo "Restarting docker services"
-docker-compose restart
-
-if [[ "${CONTINUOUS_INTEGRATION}" == true ]]
-then
-  echo "skipping ngrok tunnel on travis"
-else
-  echo "Starting ngrok tunnel"
-  "${ROOT_DIR}/ngrok-tunnel.sh"
-fi
+#echo "Triggering database reset"
+#"${DIR}/reset-databases.sh"
+#
+#echo "Restarting docker services"
+#docker-compose restart
+#
+#if [[ "${CONTINUOUS_INTEGRATION}" == true ]]
+#then
+#  echo "skipping ngrok tunnel on travis"
+#else
+#  echo "Starting ngrok tunnel"
+#  "${ROOT_DIR}/ngrok-tunnel.sh"
+#fi
