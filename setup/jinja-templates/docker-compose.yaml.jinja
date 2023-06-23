@@ -188,9 +188,9 @@ services:
   mysql:
     image: mysql:8.0.28-oracle
     container_name: docker-local-dev-mysql_1
-    command = --socket=/var/lib/mysql/mysql.sock --default-authentication-plugin=mysql_native_password
+    command: --socket=/var/lib/mysql/mysql.sock --default-authentication-plugin=mysql_native_password
     # example to set general-log outputing all queries
-    # command = --socket=/var/lib/mysql/mysql.sock --default-authentication-plugin=mysql_native_password --general-log=1 --general-log-file=/var/lib/mysql/general-log.log
+    # command: --socket=/var/lib/mysql/mysql.sock --default-authentication-plugin=mysql_native_password --general-log=1 --general-log-file=/var/lib/mysql/general-log.log
     volumes:
       - type: volume
         source: mysql-database
